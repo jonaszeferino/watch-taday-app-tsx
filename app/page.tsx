@@ -1,10 +1,10 @@
+"use client";
 
-'use client'
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+// Difinição dos types
 
-// Defina os tipos para os dados da API
 interface Movie {
   id: number;
   title: string;
@@ -21,24 +21,28 @@ export default function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    // Fazer a chamada à API quando o componente é montado
-    axios.get<ApiResponse>('http://localhost:3000/api/getWeekendMovies')
+    console.log('chamou 1')
+    axios
+      .get<ApiResponse>("/api/getWeekendMovies")
       .then((response) => {
-        // Extrair a lista de filmes da resposta da API
         const movieList = response.data.results;
         setMovies(movieList);
+        console.log('chamou 2')
       })
       .catch((error) => {
-        console.error('Erro ao buscar os filmes:', error);
+        console.error("Erro ao buscar os filmes:", error);
       });
   }, []);
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Trends neste fim de semana:</h1>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-6 gap-4">
         {movies.map((movie) => (
-          <div key={movie.id} className="bg-white rounded-lg p-4 shadow-md w-full max-h-100">
+          <div
+            key={movie.id}
+            className="bg-white rounded-lg p-4 shadow-md w-full max-h-100"
+          >
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={movie.title}
