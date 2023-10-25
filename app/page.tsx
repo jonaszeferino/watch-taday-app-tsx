@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
 // Difinição dos types
 
@@ -36,6 +38,7 @@ export default function MovieList() {
 
   return (
     <div>
+      < Navbar />
       <h1 className="text-2xl font-bold mb-4">Trends neste fim de semana:</h1>
       <div className="grid grid-cols-6 gap-4">
         {movies.map((movie) => (
@@ -53,6 +56,7 @@ export default function MovieList() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,6 @@
-## Refactored Movie APP
+## Marketplace Front
 
-Refactored app using TypeScript and Next.js 13.5
+App using TypeScript and Next.js 13.5
 
 
 
